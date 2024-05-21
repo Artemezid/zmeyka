@@ -1,4 +1,3 @@
-
 let interval;
 
 let field = document.getElementsByClassName('field');
@@ -104,6 +103,9 @@ function move() {
     };
 
     function eatingFood(){
+        //
+        let boost = 500- (`${score}`*10);
+        //
         if(snakebody[0].getAttribute('posX') == food.getAttribute('posX') && snakebody[0].getAttribute('posY')==food.getAttribute('posY')){
             food.classList.remove('food');
             let a = snakebody[snakebody.length-1].getAttribute('posX');
@@ -111,6 +113,10 @@ function move() {
             snakebody.push(document.querySelector('[posX = "' + a + '"][posY = "' + b + '"]'));
             createFood();
             score++;
+            // дополнительное задание
+            clearInterval(interval);
+            interval = setInterval(move, boost);
+            //
             input.value = `${score}`;
         };
     };
